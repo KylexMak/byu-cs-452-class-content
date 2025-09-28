@@ -78,7 +78,8 @@ questions = [
     "What is the most expensive card for sale?",
     "Which cards are the most desired?",
     "Who has the hghest rated cards?",
-    "Which users have completed the most trades?"
+    "Which users have completed the most trades?",
+    "Who's has the best card?"
     # "I need insert sql into my tables can you provide good unique data?"
 ]
 
