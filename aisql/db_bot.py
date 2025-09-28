@@ -12,8 +12,8 @@ def getPath(fname):
 
 # SQLITE
 sqliteDbPath = getPath("aidb.sqlite")
-setupSqlPath = getPath("setup.sql")
-setupSqlDataPath = getPath("setupData.sql")
+setupSqlPath = getPath("pokemonDatabaseSetup.sql")
+setupSqlDataPath = getPath("pokemonDataSetup.sql")
 
 # Erase previous db
 if os.path.exists(sqliteDbPath):
@@ -66,20 +66,19 @@ commonSqlOnlyRequest = " Give me a sqlite select statement that answers the ques
 strategies = {
     "zero_shot": setupSqlScript + commonSqlOnlyRequest,
     "single_domain_double_shot": (setupSqlScript +
-                   " Who doesn't have a way for us to text them? " +
-                   " \nSELECT p.person_id, p.name\nFROM person p\nLEFT JOIN phone ph ON p.person_id = ph.person_id AND ph.can_recieve_sms = 1\nWHERE ph.phone_id IS NULL;\n " +
+                   " What cards are up for trade? " +
+                   " \nSELECT c.name \nFROM UserCard u p\nLEFT JOIN Card c ON c.id = u.card_id where u.is_for_trade = TRUE;\n " +
                    commonSqlOnlyRequest)
 }
 
 questions = [
-    "Which are the most awarded dogs?",
-    # "Which dogs have multiple owners?",
-    # "Which people have multiple dogs?",
-    # "What are the top 3 cities represented?",
-    # "What are the names and cities of the dogs who have awards?",
-    # "Who has more than one phone number?",
-    "Who doesn't have a way for us to text them?",
-    "Will we have a problem texting any of the previous award winners?"
+    "What cards are up for trade?",
+    "Which cards are popular?",
+    "Who has cards for sale?",
+    "What is the most expensive card for sale?",
+    "Which cards are the most desired?",
+    "Who has the hghest rated cards?",
+    "Which users have completed the most trades?"
     # "I need insert sql into my tables can you provide good unique data?"
 ]
 
